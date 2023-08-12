@@ -64,8 +64,9 @@ class Predictor(BasePredictor):
         print("Loading pipeline...")
 
         self.pipe = StableDiffusionPipeline.from_pretrained(
-            MODEL_CACHE,
+            MODEL_ID,
             torch_dtype=torch.float16 if IS_FP16 else torch.float32,
+            cache_dir=MODEL_CACHE,
         ).to("cuda")
 
         patch_pipe_t2i_adapter(self.pipe)
